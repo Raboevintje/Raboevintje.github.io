@@ -1,5 +1,26 @@
 <html>
-<body>
+<head>
+ <script type="text/javascript">
+var year = 2017;
+var month = 8;
+var day = 30;
+var hours = 0;
+var minutes = 30;
+var seconds = 0;
+var milliseconds = 0;
+var start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+function script() {
+	document.getElementById("start").innerHTML = start;
+	milliseconds = new Date()-start;
+	document.getElementById("demo").innerHTML = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
+}
+
+</script> 
+</head>
+<body onload="script();">
+<div id="start"></div>
+<div id="demo"></div>
 <3
 </body>
 </html>
+
