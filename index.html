@@ -1,26 +1,40 @@
 <html>
 <head>
  <script type="text/javascript">
-var year = 2017;
-var month = 8;
-var day = 30;
-var hours = 0;
-var minutes = 30;
-var seconds = 0;
-var milliseconds = 0;
-var start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+const year = 2017;
+const month = 8;
+const day = 30;
+const hours = 0;
+const minutes = 30;
+const seconds = 0;
+const milliseconds = 0;
+const start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+
 function script() {
+	currentDate = new Date();
 	document.getElementById("start").innerHTML = start;
-	milliseconds = new Date()-start;
-	document.getElementById("demo").innerHTML = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
+	const milliseconds = currentDate-start;
+	document.getElementById("days").innerHTML = Math.floor(milliseconds / 1000 / 60 / 60 / 24);
+	document.getElementById("months").innerHTML = calculateMonths(start, currentDate);
+}
+
+function calculateMonths(from, to) {
+	var months = to.getMonth() - from.getMonth() 
+    + (12 * (to.getFullYear() - from.getFullYear()));
+
+	if(to.getDate() < from.getDate()){
+	    months--;
+	}
+	return months;
 }
 
 </script> 
 </head>
 <body onload="script();">
-<div id="start"></div>
-<div id="demo"></div>
-<3
+<div> Startdatum: <span id="start"></span></div>
+<div> Dagen: <span id="days"></span></div>
+<div> Maanden: <span id="months"></span></div>
+&lt;3
 </body>
 </html>
 
