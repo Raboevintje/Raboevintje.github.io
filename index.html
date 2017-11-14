@@ -1,6 +1,8 @@
 <html>
 <head>
  <script type="text/javascript">
+
+const minuutInSecondes = 60;
 const year = 2017;
 const month = 8;
 const day = 30;
@@ -9,6 +11,8 @@ const minutes = 30;
 const seconds = 0;
 const milliseconds = 0;
 const start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+
+var laatsteMijlpaalBericht = "";
 
 function script() {
 	currentDate = new Date();
@@ -22,6 +26,7 @@ function script() {
 	document.getElementById("seconds").innerHTML = Math.floor(milliseconds / 1000);
 	document.getElementById("secondeViering").innerHTML = secondeViering(milliseconds);
 	document.getElementById("maandViering").innerHTML = maandViering(currentDate);
+	document.getElementById("laatsteMijlpaal").innerHTML = laatsteMijlpaalBericht;
 }
 
 Number.prototype.millisToDays = function () {
@@ -33,7 +38,9 @@ Number.prototype.millisToSeconds = function() {
 };
 
 function secondeViering(elapsed) {
-	if (elapsed.millisToSeconds % 1000000 === 0) {
+	if (elapsed.millisToSeconds() % 1000000 < 30 * minuutInSecondes) {
+		vierGetal = elapsed.millisToSeconds() - elapsed.millisToSeconds() % 1000000;
+		laatsteMijlpaalBericht = "whoehoe jullie vieren dat jullie " + vierGetal + " secondes bij elkaar zijn";
 		return "oooowwww yes";
 	} else {
 		return "";
@@ -68,13 +75,16 @@ function calculateMonths(from, to) {
 </script> 
 </head>
 <body onload="script(); setInterval(script, 1000);">
-<div> Startdatum: <span id="start"></span></div>
-<div> Dagen: <span id="days"></span> <span id="dagViering"></span></div>
-<div> Maanden: <span id="months"></span> <span id="maandViering"></span></div>
-<div> Uren: <span id="hours"></span></div>
-<div> Minuten: <span id="minutes"></span></div>
-<div> Secondes: <span id="seconds"></span><span id="secondeViering"></span></div>
-&lt;3
+<div style="position:absolute; top:50%; left:50%; -ms-transform: translateX(-50%) translateY(-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);">
+	<div> Startdatum: <span id="start"></span></div>
+	<div> Dagen: <span id="days"></span> <span id="dagViering"></span></div>
+	<div> Maanden: <span id="months"></span> <span id="maandViering"></span></div>
+	<div> Uren: <span id="hours"></span></div>
+	<div> Minuten: <span id="minutes"></span></div>
+	<div> Secondes: <span id="seconds"></span> <span id="secondeViering"></span></div>
+
+	<div> &lt;3 <span id="laatsteMijlpaal" /> </div>
+</div>
 </body>
 </html>
 
