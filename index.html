@@ -38,8 +38,6 @@ Number.prototype.millisToSeconds = function() {
 
 function secondeViering(elapsed) {
 	if (elapsed.millisToSeconds() % 1000000 < 30 * minuutInSecondes) {
-		vierGetal = elapsed.millisToSeconds() - elapsed.millisToSeconds() % 1000000;
-		laatsteMijlpaalBericht = "whoehoe jullie vieren dat jullie " + vierGetal + " secondes bij elkaar zijn";
 		return "oooowwww yes";
 	} else {
 		return "";
