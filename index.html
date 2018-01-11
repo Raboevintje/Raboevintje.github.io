@@ -12,7 +12,7 @@ const seconds = 0;
 const milliseconds = 0;
 const start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
 
-var laatsteMijlpaalBericht = "";
+var vakantie = new Date(2018, 1, 17, 0, 0, 0, 0, 0);
 
 function script() {
 	currentDate = new Date();
@@ -25,7 +25,7 @@ function script() {
 	document.getElementById("seconds").innerHTML = Math.floor(milliseconds / 1000);
 	document.getElementById("secondeViering").innerHTML = secondeViering(milliseconds);
 	document.getElementById("maandViering").innerHTML = maandViering(currentDate);
-	document.getElementById("laatsteMijlpaal").innerHTML = laatsteMijlpaalBericht;
+	document.getElementById("dagenTotVakantie").innerHTML = dagenTotVakantie(currentDate);
 }
 
 Number.prototype.millisToDays = function () {
@@ -71,6 +71,10 @@ function calculateMonths(from, to) {
 	return months;
 }
 
+function dagenTotVakantie(currentDate) {
+	var dagenTeGaan = (vakantie - currentDate).millisToDays();
+	return dagenTeGaan + " dagen!!"
+}
 </script> 
 </head>
 <body onload="script(); setInterval(script, 1000);">
@@ -81,7 +85,8 @@ function calculateMonths(from, to) {
 	<div> Uren: <span id="hours"></span></div>
 	<div> Secondes: <span id="seconds"></span> <span id="secondeViering"></span></div>
 
-	<div> &lt;3 <span id="laatsteMijlpaal" /> </div>
+	<div> &lt;3 </div>
+	<div> Vakantie over..... <span id="dagenTotVakantie" /></div>
 </div>
 </body>
 </html>
