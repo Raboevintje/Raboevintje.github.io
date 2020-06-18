@@ -1,0 +1,91 @@
+<html>
+<head>
+ <script type="text/javascript">
+
+const minuutInSecondes = 60;
+const year = 2017;
+const month = 8;
+const day = 30;
+const hours = 0;
+const minutes = 30;
+const seconds = 0;
+const milliseconds = 0;
+const start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+
+var vakantie = new Date(2018, 1, 17, 0, 0, 0, 0, 0);
+
+function script() {
+	currentDate = new Date();
+	document.getElementById("start").innerHTML = start;
+	const milliseconds = currentDate-start;
+	document.getElementById("days").innerHTML = milliseconds.millisToDays();
+	document.getElementById("dagViering").innerHTML = dagViering(milliseconds);
+	document.getElementById("months").innerHTML = calculateMonths(start, currentDate);
+	document.getElementById("hours").innerHTML = Math.floor(milliseconds / 1000 / 60 / 60);
+	document.getElementById("seconds").innerHTML = Math.floor(milliseconds / 1000);
+	document.getElementById("secondeViering").innerHTML = secondeViering(milliseconds);
+	document.getElementById("maandViering").innerHTML = maandViering(currentDate);
+	document.getElementById("dagenTotVakantie").innerHTML = dagenTotVakantie(currentDate);
+}
+
+Number.prototype.millisToDays = function () {
+	return Math.floor(this / 1000 / 60 / 60 / 24);
+}
+
+Number.prototype.millisToSeconds = function() {
+	return Math.floor(this / 1000);
+};
+
+function secondeViering(elapsed) {
+	if (elapsed.millisToSeconds() % 1000000 < 30 * minuutInSecondes) {
+		return "oooowwww yes";
+	} else {
+		return "";
+	}
+}
+function dagViering(elapsed) { 
+	if (elapsed.millisToDays() === 42 || elapsed.millisToDays() % 100 === 0) {
+		return "wooohoooooo!!!";
+	} else {
+		return "";
+	}
+}
+
+function maandViering(current){
+	if (current.getDate() === start.getDate()) {
+		return "Jippieee";
+	} else {
+		return "";
+	}
+}
+
+function calculateMonths(from, to) {
+	var months = to.getMonth() - from.getMonth() 
+    + (12 * (to.getFullYear() - from.getFullYear()));
+
+	if(to.getDate() < from.getDate()){
+	    months--;
+	}
+	return months;
+}
+
+function dagenTotVakantie(currentDate) {
+	var dagenTeGaan = (vakantie - currentDate).millisToDays();
+	return dagenTeGaan + " dagen!!"
+}
+</script> 
+</head>
+<body onload="script(); setInterval(script, 1000);">
+<div style="position:absolute; top:50%; left:50%; width: 100vw; font-size: 4vw; text-align: center; -ms-transform: translateX(-50%) translateY(-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);">
+	<div id="start"></div>
+	<div> Maanden: <span id="months"></span> <span id="maandViering"></span></div>
+	<div> Dagen: <span id="days"></span> <span id="dagViering"></span></div>
+	<div> Uren: <span id="hours"></span></div>
+	<div> Secondes: <span id="seconds"></span> <span id="secondeViering"></span></div>
+
+	<div> &lt;3 </div>
+	<div> Vakantie over..... <span id="dagenTotVakantie" /></div>
+</div>
+</body>
+</html>
+

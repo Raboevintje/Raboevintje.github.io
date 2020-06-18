@@ -1,91 +1,596 @@
 <html>
-<head>
- <script type="text/javascript">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header>
+      <div>beantwoord: </div><div id="nr_beantwoord">0</div>
+      <div class="goed_beantwoord">goed: </div><div class="goed_beantwoord" id="nr_goed_beantwoord">0</div>
+      <div class="fout_beantwoord">fout: </div><div class="fout_beantwoord" id="nr_fout_beantwoord">0</div>
+    </header>
 
-const minuutInSecondes = 60;
-const year = 2017;
-const month = 8;
-const day = 30;
-const hours = 0;
-const minutes = 30;
-const seconds = 0;
-const milliseconds = 0;
-const start = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    <div id="aanhangwagens">
+      <h1>aanhangwagens:</h1>
+      <input type="text" id="aanhangwagens_a1"></input> die door een <input type="text" id="aanhangwagens_a2"></input> worden voortbewogen of kennelijk bestemd zijn om aldus te worden voortbewogen, alsmede <input type="text" id="aanhangwagens_a3"></input>;
+      <button type="button" onclick="checkAanhangwagens(this)">Controleer</button>
+    </div>
+    <div id="aanhangwagens_correct" class="correct">Je hebt de aanhangwagens-vraag correct beantwoord!</div>
+    <div id="aanhangwagens_fout" class="fout"><i>aanhangwagens:</i> voertuigen die door een voertuig worden voortbewogen of kennelijk bestemd zijn om aldus te worden voortbewogen, alsmede opleggers;</div>
+    <div id="ambulance">
+      <h1>ambulance:</h1>
+      <input type="text" id="ambulance_a1"></input>, <input type="text" id="ambulance_a2"></input> en <input type="text" id="ambulance_a3"></input> om te worden gebruikt voor <input type="text" id="ambulance_a4"></input> als bedoeld in de Tijdelijke wet ambulancezorg;
+      <button type="button" onclick="checkAmbulance(this)">Controleer</button>
+    </div>
+    <div id="ambulance_correct" class="correct">Je hebt de ambulance-vraag correct beantwoord!</div>
+    <div id="ambulance_fout" class="fout"><i>ambulance:</i> motorvoertuig, ingericht en bestemd om te worden gebruikt voor ambulancezorg als bedoeld in de Tijdelijke wet ambulancezorg;</div>
+    <div id="autobus">
+      <h1>autobus:</h1>
+      <input type="text" id="autobus_a1"></input>, <input type="text" id="autobus_a2"></input> voor het vervoer van <input type="text" id="autobus_a3"></input> dan <input type="text" id="autobus_a4"></input> personen, de bestuurder daaronder <input type="text" id="autobus_a5"></input> begrepen;
+      <button type="button" onclick="checkAutobus(this)">Controleer</button>
+    </div>
+    <div id="autobus_correct" class="correct">Je hebt de autobus-vraag correct beantwoord!</div>
+    <div id="autobus_fout" class="fout"><i>autobus:</i> motorvoertuig, ingericht voor het vervoer van meer dan acht personen, de bestuurder daaronder niet begrepen;</div>
+    <div id="autosnelweg">
+      <h1>autosnelweg:</h1>
+      weg, aangeduid door bord G1 van bijlage I; langs autosnelwegen gelegen <input type="text" id="autosnelweg_a1"></input>, <input type="text" id="autosnelweg_a2"></input> en <input type="text" id="autosnelweg_a3"></input> maken geen deel van de autosnelweg uit;
+      <button type="button" onclick="checkAutosnelweg(this)">Controleer</button>
+    </div>
+    <div id="autosnelweg_correct" class="correct">Je hebt de autosnelweg-vraag correct beantwoord!</div>
+    <div id="autosnelweg_fout" class="fout"><i>autosnelweg:</i> weg, aangeduid door bord G1 van bijlage I; langs autosnelwegen gelegen parkeerplaatsen, tankstations en bushalteplaatsen maken geen deel van de autosnelweg uit;</div>
+    <div id="autoweg">
+      <h1>autoweg:</h1>
+      weg, aangeduid door bord G3 van bijlage I; langs autowegen gelegen <input type="text" id="autoweg_a1"></input>, <input type="text" id="autoweg_a2"></input> en <input type="text" id="autoweg_a3"></input> maken geen deel van de autoweg uit;
+      <button type="button" onclick="checkAutoweg(this)">Controleer</button>
+    </div>
+    <div id="autoweg_correct" class="correct">Je hebt de autoweg-vraag correct beantwoord!</div>
+    <div id="autoweg_fout" class="fout"><i>autoweg:</i> weg, aangeduid door bord G3 van bijlage I; langs autowegen gelegen parkeerplaatsen, tankstations en bushalteplaatsen maken geen deel van de autoweg uit;</div>
+    <div id="bestelauto">
+      <h1>bestelauto:</h1>
+      <input type="text" id="bestelauto_a1"></input>, bestemd voor het vervoer van <input type="text" id="bestelauto_a2"></input>, waarvan de toegestane maximum <input type="text" id="bestelauto_a3"></input> niet meer bedraagt dan <input type="text" id="bestelauto_a4"></input> kg;
+      <button type="button" onclick="checkBestelauto(this)">Controleer</button>
+    </div>
+    <div id="bestelauto_correct" class="correct">Je hebt de bestelauto-vraag correct beantwoord!</div>
+    <div id="bestelauto_fout" class="fout"><i>bestelauto:</i> motorvoertuig, bestemd voor het vervoer van goederen, waarvan de toegestane maximum massa niet meer bedraagt dan 3500 kg;</div>
+    <div id="bestemmingsverkeer">
+      <h1>bestemmingsverkeer:</h1>
+      <input type="text" id="bestemmingsverkeer_a1"></input> wier <input type="text" id="bestemmingsverkeer_a2"></input> één of meer bepaalde percelen betreft die zijn gelegen aan of in de directe nabijheid van een weg met een door verkeerstekens aangegeven <input type="text" id="bestemmingsverkeer_a3"></input> voor bepaalde categorieën <input type="text" id="bestemmingsverkeer_a4"></input> en die slechts via deze weg zijn te bereiken alsmede bestuurders van <input type="text" id="bestemmingsverkeer_a5"></input>;
+      <button type="button" onclick="checkBestemmingsverkeer(this)">Controleer</button>
+    </div>
+    <div id="bestemmingsverkeer_correct" class="correct">Je hebt de bestemmingsverkeer-vraag correct beantwoord!</div>
+    <div id="bestemmingsverkeer_fout" class="fout"><i>bestemmingsverkeer:</i> bestuurders wier reisdoel één of meer bepaalde percelen betreft die zijn gelegen aan of in de directe nabijheid van een weg met een door verkeerstekens aangegeven geslotenverklaring voor bepaalde categorieën bestuurders en die slechts via deze weg zijn te bereiken alsmede bestuurders van lijnbussen;</div>
+    <div id="bestuurders">
+      <h1>bestuurders:</h1>
+      alle <input type="text" id="bestuurders_a1"></input> behalve <input type="text" id="bestuurders_a2"></input>;
+      <button type="button" onclick="checkBestuurders(this)">Controleer</button>
+    </div>
+    <div id="bestuurders_correct" class="correct">Je hebt de bestuurders-vraag correct beantwoord!</div>
+    <div id="bestuurders_fout" class="fout"><i>bestuurders:</i> alle weggebruikers behalve voetgangers;</div>
+    <div id="bestuurder_van_een_motorvoertuig">
+      <h1>bestuurder van een motorvoertuig:</h1>
+      1. hij die het motorvoertuig bestuurt of 2. voor zover het betreft een motorvoertuig voor het besturen waarvan een rijbewijs AM, B, C, D of E, is vereist en dat is voorzien van een <input type="text" id="bestuurder_van_een_motorvoertuig_a1"></input> <input type="text" id="bestuurder_van_een_motorvoertuig_a2"></input>, hij die <input type="text" id="bestuurder_van_een_motorvoertuig_a3"></input> geeft of toezicht houdt in het kader van een vanwege de overheid ingesteld onderzoek naar de rijvaardigheid, niet zijnde een onderzoek als bedoeld in artikel 131, eerste lid, van de wet;
+      <button type="button" onclick="checkBestuurder_van_een_motorvoertuig(this)">Controleer</button>
+    </div>
+    <div id="bestuurder_van_een_motorvoertuig_correct" class="correct">Je hebt de bestuurder_van_een_motorvoertuig-vraag correct beantwoord!</div>
+    <div id="bestuurder_van_een_motorvoertuig_fout" class="fout"><i>bestuurder_van_een_motorvoertuig:</i> 1. hij die het motorvoertuig bestuurt of 2. voor zover het betreft een motorvoertuig voor het besturen waarvan een rijbewijs AM, B, C, D of E, is vereist en dat is voorzien van een dubbele bediening, hij die rijonderricht geeft of toezicht houdt in het kader van een vanwege de overheid ingesteld onderzoek naar de rijvaardigheid, niet zijnde een onderzoek als bedoeld in artikel 131, eerste lid, van de wet;</div>
+    <div id="brombakfiets">
+      <h1>brombakfiets:</h1>
+      <input type="text" id="brombakfiets_a1"></input> op <input type="text" id="brombakfiets_a2"></input> symmetrisch geplaatste wielen, met <input type="text" id="brombakfiets_a3"></input> voorwielen en uitsluitend ingericht voor het vervoer van de <input type="text" id="brombakfiets_a4"></input> en van <input type="text" id="brombakfiets_a5"></input> en eventueel van een <input type="text" id="brombakfiets_a6"></input> de bestuurder gezeten passagier;
+      <button type="button" onclick="checkBrombakfiets(this)">Controleer</button>
+    </div>
+    <div id="brombakfiets_correct" class="correct">Je hebt de brombakfiets-vraag correct beantwoord!</div>
+    <div id="brombakfiets_fout" class="fout"><i>brombakfiets:</i> bromfiets op drie symmetrisch geplaatste wielen, met twee voorwielen en uitsluitend ingericht voor het vervoer van de bestuurder en van goederen en eventueel van een achter de bestuurder gezeten passagier;</div>
+    <div id="brommobiel">
+      <h1>brommobiel:</h1>
+      <input type="text" id="brommobiel_a1"></input> op <input type="text" id="brommobiel_a2"></input> dan <input type="text" id="brommobiel_a3"></input> wielen, die is voorzien van een <input type="text" id="brommobiel_a4"></input>;
+      <button type="button" onclick="checkBrommobiel(this)">Controleer</button>
+    </div>
+    <div id="brommobiel_correct" class="correct">Je hebt de brommobiel-vraag correct beantwoord!</div>
+    <div id="brommobiel_fout" class="fout"><i>brommobiel:</i> bromfiets op meer dan twee wielen, die is voorzien van een carrosserie;</div>
+    <div id="busbaan">
+      <h1>busbaan:</h1>
+      <input type="text" id="busbaan_a1"></input> waarop het woord <input type="text" id="busbaan_a2"></input> of <input type="text" id="busbaan_a3"></input> is aangebracht;
+      <button type="button" onclick="checkBusbaan(this)">Controleer</button>
+    </div>
+    <div id="busbaan_correct" class="correct">Je hebt de busbaan-vraag correct beantwoord!</div>
+    <div id="busbaan_fout" class="fout"><i>busbaan:</i> rijbaan waarop het woord BUS of LIJNBUS is aangebracht;</div>
+    <div id="busstrook">
+      <h1>busstrook:</h1>
+      door <input type="text" id="busstrook_a1"></input> of <input type="text" id="busstrook_a2"></input> strepen gemarkeerd gedeelte van de <input type="text" id="busstrook_a3"></input> waarop het woord <input type="text" id="busstrook_a4"></input> of <input type="text" id="busstrook_a5"></input> is aangebracht;
+      <button type="button" onclick="checkBusstrook(this)">Controleer</button>
+    </div>
+    <div id="busstrook_correct" class="correct">Je hebt de busstrook-vraag correct beantwoord!</div>
+    <div id="busstrook_fout" class="fout"><i>busstrook:</i> door doorgetrokken of onderbroken strepen gemarkeerd gedeelte van de rijbaan waarop het woord BUS of LIJNBUS is aangebracht;</div>
+    <div id="dag">
+      <h1>dag:</h1>
+      de periode tussen <input type="text" id="dag_a1"></input> en <input type="text" id="dag_a2"></input>;
+      <button type="button" onclick="checkDag(this)">Controleer</button>
+    </div>
+    <div id="dag_correct" class="correct">Je hebt de dag-vraag correct beantwoord!</div>
+    <div id="dag_fout" class="fout"><i>dag:</i> de periode tussen zonsopgang en zonsondergang;</div>
+    <div id="diensten_voor_spoedeisende_medische_hulpverlening">
+      <h1>diensten voor spoedeisende medische hulpverlening:</h1>
+      de op grond van artikel 6 van de Tijdelijke wet ambulancezorg aangewezen Regionale Ambulancevoorzieningen, alsmede andere hulpverleningsdiensten die zich in opdracht van een meldkamer als bedoeld in artikel 1, eerste lid, onder e, van de Tijdelijke wet ambulancezorg bezig houden met het verlenen van <input type="text" id="diensten_voor_spoedeisende_medische_hulpverlening_a1"></input> medische hulpverlening;
+      <button type="button" onclick="checkDiensten_voor_spoedeisende_medische_hulpverlening(this)">Controleer</button>
+    </div>
+    <div id="diensten_voor_spoedeisende_medische_hulpverlening_correct" class="correct">Je hebt de diensten_voor_spoedeisende_medische_hulpverlening-vraag correct beantwoord!</div>
+    <div id="diensten_voor_spoedeisende_medische_hulpverlening_fout" class="fout"><i>diensten_voor_spoedeisende_medische_hulpverlening:</i> de op grond van artikel 6 van de Tijdelijke wet ambulancezorg aangewezen Regionale Ambulancevoorzieningen, alsmede andere hulpverleningsdiensten die zich in opdracht van een meldkamer als bedoeld in artikel 1, eerste lid, onder e, van de Tijdelijke wet ambulancezorg bezig houden met het verlenen van spoedeisende medische hulpverlening;</div>
+    <div id="dierenambulance">
+      <h1>dierenambulance:</h1>
+      <input type="text" id="dierenambulance_a1"></input>, <input type="text" id="dierenambulance_a2"></input> en <input type="text" id="dierenambulance_a3"></input> om te worden gebruikt voor het vervoer van zieke en gewonde dieren;
+      <button type="button" onclick="checkDierenambulance(this)">Controleer</button>
+    </div>
+    <div id="dierenambulance_correct" class="correct">Je hebt de dierenambulance-vraag correct beantwoord!</div>
+    <div id="dierenambulance_fout" class="fout"><i>dierenambulance:</i> motorvoertuig, ingericht en bestemd om te worden gebruikt voor het vervoer van zieke en gewonde dieren;</div>
+    <div id="doorgaande_rijbaan">
+      <h1>doorgaande rijbaan:</h1>
+      rijbaan zonder de invoeg- en <input type="text" id="doorgaande_rijbaan_a1"></input>;
+      <button type="button" onclick="checkDoorgaande_rijbaan(this)">Controleer</button>
+    </div>
+    <div id="doorgaande_rijbaan_correct" class="correct">Je hebt de doorgaande_rijbaan-vraag correct beantwoord!</div>
+    <div id="doorgaande_rijbaan_fout" class="fout"><i>doorgaande_rijbaan:</i> rijbaan zonder de invoeg- en uitrijstroken;</div>
+    <div id="fietsstrook">
+      <h1>fietsstrook:</h1>
+      door <input type="text" id="fietsstrook_a1"></input> of <input type="text" id="fietsstrook_a2"></input> strepen gemarkeerd gedeelte van de <input type="text" id="fietsstrook_a3"></input> waarop afbeeldingen van een <input type="text" id="fietsstrook_a4"></input> zijn aangebracht;
+      <button type="button" onclick="checkFietsstrook(this)">Controleer</button>
+    </div>
+    <div id="fietsstrook_correct" class="correct">Je hebt de fietsstrook-vraag correct beantwoord!</div>
+    <div id="fietsstrook_fout" class="fout"><i>fietsstrook:</i> door doorgetrokken of onderbroken strepen gemarkeerd gedeelte van de rijbaan waarop afbeeldingen van een fiets zijn aangebracht;</div>
+    <div id="gehandicaptenvoertuig">
+      <h1>gehandicaptenvoertuig:</h1>
+      <input type="text" id="gehandicaptenvoertuig_a1"></input> dat is <input type="text" id="gehandicaptenvoertuig_a2"></input> voor het vervoer van een <input type="text" id="gehandicaptenvoertuig_a3"></input>, niet breder is dan <input type="text" id="gehandicaptenvoertuig_a4"></input> meter en <input type="text" id="gehandicaptenvoertuig_a5"></input> is uitgerust met een <input type="text" id="gehandicaptenvoertuig_a6"></input>, dan wel is uitgerust met een motor waarvan de door de constructie bepaalde <input type="text" id="gehandicaptenvoertuig_a7"></input> niet meer dan <input type="text" id="gehandicaptenvoertuig_a8"></input> km per uur bedraagt, en geen <input type="text" id="gehandicaptenvoertuig_a9"></input> is;
+      <button type="button" onclick="checkGehandicaptenvoertuig(this)">Controleer</button>
+    </div>
+    <div id="gehandicaptenvoertuig_correct" class="correct">Je hebt de gehandicaptenvoertuig-vraag correct beantwoord!</div>
+    <div id="gehandicaptenvoertuig_fout" class="fout"><i>gehandicaptenvoertuig:</i> voertuig dat is ingericht voor het vervoer van een gehandicapte, niet breder is dan 1,10 meter en niet is uitgerust met een motor, dan wel is uitgerust met een motor waarvan de door de constructie bepaalde maximumsnelheid niet meer dan 45 km per uur bedraagt, en geen bromfiets is;</div>
+    <div id="geslotenverklaring">
+      <h1>geslotenverklaring:</h1>
+      verbod de betrokken weg in te <input type="text" id="geslotenverklaring_a1"></input> of in te <input type="text" id="geslotenverklaring_a2"></input> alsmede de betrokken weg te <input type="text" id="geslotenverklaring_a3"></input>;
+      <button type="button" onclick="checkGeslotenverklaring(this)">Controleer</button>
+    </div>
+    <div id="geslotenverklaring_correct" class="correct">Je hebt de geslotenverklaring-vraag correct beantwoord!</div>
+    <div id="geslotenverklaring_fout" class="fout"><i>geslotenverklaring:</i> verbod de betrokken weg in te rijden of in te gaan alsmede de betrokken weg te gebruiken;</div>
+    <div id="invoegstrook">
+      <h1>invoegstrook:</h1>
+      door een <input type="text" id="invoegstrook_a1"></input> van de <input type="text" id="invoegstrook_a2"></input> rijbaan afgescheiden weggedeelte dat is bestemd voor <input type="text" id="invoegstrook_a3"></input> die de doorgaande rijbaan <input type="text" id="invoegstrook_a4"></input>;
+      <button type="button" onclick="checkInvoegstrook(this)">Controleer</button>
+    </div>
+    <div id="invoegstrook_correct" class="correct">Je hebt de invoegstrook-vraag correct beantwoord!</div>
+    <div id="invoegstrook_fout" class="fout"><i>invoegstrook:</i> door een blokmarkering van de doorgaande rijbaan afgescheiden weggedeelte dat is bestemd voor bestuurders die de doorgaande rijbaan oprijden;</div>
+    <div id="kruispunt">
+      <h1>kruispunt:</h1>
+      <input type="text" id="kruispunt_a1"></input> of <input type="text" id="kruispunt_a2"></input> van wegen;
+      <button type="button" onclick="checkKruispunt(this)">Controleer</button>
+    </div>
+    <div id="kruispunt_correct" class="correct">Je hebt de kruispunt-vraag correct beantwoord!</div>
+    <div id="kruispunt_fout" class="fout"><i>kruispunt:</i> kruising of splitsing van wegen;</div>
+    <div id="lijnbus">
+      <h1>lijnbus:</h1>
+      <input type="text" id="lijnbus_a1"></input>, gebezigd voor het verrichten van <input type="text" id="lijnbus_a2"></input> vervoer in de zin van de Wet personenvervoer 2000;
+      <button type="button" onclick="checkLijnbus(this)">Controleer</button>
+    </div>
+    <div id="lijnbus_correct" class="correct">Je hebt de lijnbus-vraag correct beantwoord!</div>
+    <div id="lijnbus_fout" class="fout"><i>lijnbus:</i> motorvoertuig, gebezigd voor het verrichten van openbaar vervoer in de zin van de Wet personenvervoer 2000;</div>
+    <div id="militaire_kolonne">
+      <h1>militaire kolonne:</h1>
+      een aantal zich <input type="text" id="militaire_kolonne_a1"></input> elkaar bevindende <input type="text" id="militaire_kolonne_a2"></input> dan wel bij een onderdeel van de <input type="text" id="militaire_kolonne_a3"></input> in gebruik zijnde <input type="text" id="militaire_kolonne_a4"></input>, onder één <input type="text" id="militaire_kolonne_a5"></input>, die de door Onze Minister in overeenstemming met Onze Minister van Defensie vastgestelde <input type="text" id="militaire_kolonne_a6"></input> voeren;
+      <button type="button" onclick="checkMilitaire_kolonne(this)">Controleer</button>
+    </div>
+    <div id="militaire_kolonne_correct" class="correct">Je hebt de militaire_kolonne-vraag correct beantwoord!</div>
+    <div id="militaire_kolonne_fout" class="fout"><i>militaire_kolonne:</i> een aantal zich achter elkaar bevindende militaire dan wel bij een onderdeel van de rampenbestrijdingsorganisatie in gebruik zijnde motorvoertuigen, onder één commandant, die de door Onze Minister in overeenstemming met Onze Minister van Defensie vastgestelde herkenningstekens voeren;</div>
+    <div id="motorfiets">
+      <h1>motorfiets:</h1>
+      <input type="text" id="motorfiets_a1"></input> op <input type="text" id="motorfiets_a2"></input> wielen al dan niet met zijspan- of <input type="text" id="motorfiets_a3"></input>;
+      <button type="button" onclick="checkMotorfiets(this)">Controleer</button>
+    </div>
+    <div id="motorfiets_correct" class="correct">Je hebt de motorfiets-vraag correct beantwoord!</div>
+    <div id="motorfiets_fout" class="fout"><i>motorfiets:</i> motorvoertuig op twee wielen al dan niet met zijspan- of aanhangwagen;</div>
+    <div id="motorvoertuigen">
+      <h1>motorvoertuigen:</h1>
+      alle <input type="text" id="motorvoertuigen_a1"></input> voertuigen behalve <input type="text" id="motorvoertuigen_a2"></input>, fietsen met <input type="text" id="motorvoertuigen_a3"></input> en <input type="text" id="motorvoertuigen_a4"></input>, bestemd om anders dan langs <input type="text" id="motorvoertuigen_a5"></input> te worden voortbewogen;
+      <button type="button" onclick="checkMotorvoertuigen(this)">Controleer</button>
+    </div>
+    <div id="motorvoertuigen_correct" class="correct">Je hebt de motorvoertuigen-vraag correct beantwoord!</div>
+    <div id="motorvoertuigen_fout" class="fout"><i>motorvoertuigen:</i> alle gemotoriseerde voertuigen behalve bromfietsen, fietsen met trapondersteuning en gehandicaptenvoertuigen, bestemd om anders dan langs rails te worden voortbewogen;</div>
+    <div id="nacht">
+      <h1>nacht:</h1>
+      de periode tussen <input type="text" id="nacht_a1"></input> en <input type="text" id="nacht_a2"></input>;
+      <button type="button" onclick="checkNacht(this)">Controleer</button>
+    </div>
+    <div id="nacht_correct" class="correct">Je hebt de nacht-vraag correct beantwoord!</div>
+    <div id="nacht_fout" class="fout"><i>nacht:</i> de periode tussen zonsondergang en zonsopgang;</div>
+    <div id="overweg">
+      <h1>overweg:</h1>
+      kruising van een <input type="text" id="overweg_a1"></input> en een <input type="text" id="overweg_a2"></input> die wordt aangeduid door middel van bord J12 of J13 van bijlage 1;
+      <button type="button" onclick="checkOverweg(this)">Controleer</button>
+    </div>
+    <div id="overweg_correct" class="correct">Je hebt de overweg-vraag correct beantwoord!</div>
+    <div id="overweg_fout" class="fout"><i>overweg:</i> kruising van een weg en een spoorweg die wordt aangeduid door middel van bord J12 of J13 van bijlage 1;</div>
+    <div id="parkeerhaven_of_parkeerstrook">
+      <h1>parkeerhaven of parkeerstrook:</h1>
+      langs de <input type="text" id="parkeerhaven_of_parkeerstrook_a1"></input> gelegen verharding die is bestemd voor <input type="text" id="parkeerhaven_of_parkeerstrook_a2"></input> of <input type="text" id="parkeerhaven_of_parkeerstrook_a3"></input> voertuigen;
+      <button type="button" onclick="checkParkeerhaven_of_parkeerstrook(this)">Controleer</button>
+    </div>
+    <div id="parkeerhaven_of_parkeerstrook_correct" class="correct">Je hebt de parkeerhaven_of_parkeerstrook-vraag correct beantwoord!</div>
+    <div id="parkeerhaven_of_parkeerstrook_fout" class="fout"><i>parkeerhaven_of_parkeerstrook:</i> langs de rijbaan gelegen verharding die is bestemd voor stilstaande of geparkeerde voertuigen;</div>
+    <div id="parkeren">
+      <h1>parkeren:</h1>
+      het laten <input type="text" id="parkeren_a1"></input> van een <input type="text" id="parkeren_a2"></input> anders dan gedurende de tijd die <input type="text" id="parkeren_a3"></input> is voor en gebruikt wordt tot het <input type="text" id="parkeren_a4"></input> in- of <input type="text" id="parkeren_a5"></input> van <input type="text" id="parkeren_a6"></input> of voor het onmiddellijk <input type="text" id="parkeren_a7"></input> of <input type="text" id="parkeren_a8"></input> van <input type="text" id="parkeren_a9"></input>;
+      <button type="button" onclick="checkParkeren(this)">Controleer</button>
+    </div>
+    <div id="parkeren_correct" class="correct">Je hebt de parkeren-vraag correct beantwoord!</div>
+    <div id="parkeren_fout" class="fout"><i>parkeren:</i> het laten stilstaan van een voertuig anders dan gedurende de tijd die nodig is voor en gebruikt wordt tot het onmiddellijk in- of uitstappen van passagiers of voor het onmiddellijk laden of lossen van goederen;</div>
+    <div id="puntstuk">
+      <h1>puntstuk:</h1>
+      meerhoekig vlak op het wegdek, opgenomen bij <input type="text" id="puntstuk_a1"></input> of <input type="text" id="puntstuk_a2"></input> van <input type="text" id="puntstuk_a3"></input>, <input type="text" id="puntstuk_a4"></input> of <input type="text" id="puntstuk_a5"></input>;
+      <button type="button" onclick="checkPuntstuk(this)">Controleer</button>
+    </div>
+    <div id="puntstuk_correct" class="correct">Je hebt de puntstuk-vraag correct beantwoord!</div>
+    <div id="puntstuk_fout" class="fout"><i>puntstuk:</i> meerhoekig vlak op het wegdek, opgenomen bij splitsingen of samenvoegingen van wegen, rijstroken of rijbanen;</div>
+    <div id="rijbaan">
+      <h1>rijbaan:</h1>
+      elk voor <input type="text" id="rijbaan_a1"></input> voertuigen bestemd weggedeelte met uitzondering van de <input type="text" id="rijbaan_a2"></input> en de <input type="text" id="rijbaan_a3"></input>;
+      <button type="button" onclick="checkRijbaan(this)">Controleer</button>
+    </div>
+    <div id="rijbaan_correct" class="correct">Je hebt de rijbaan-vraag correct beantwoord!</div>
+    <div id="rijbaan_fout" class="fout"><i>rijbaan:</i> elk voor rijdende voertuigen bestemd weggedeelte met uitzondering van de fietspaden en de fiets/bromfietspaden;</div>
+    <div id="rijstrook">
+      <h1>rijstrook:</h1>
+      door <input type="text" id="rijstrook_a1"></input> of <input type="text" id="rijstrook_a2"></input> strepen gemarkeerd gedeelte van de <input type="text" id="rijstrook_a3"></input> van zodanige <input type="text" id="rijstrook_a4"></input> dat bestuurders van motorvoertuigen op <input type="text" id="rijstrook_a5"></input> dan <input type="text" id="rijstrook_a6"></input> wielen daarvan gebruik kunnen maken;
+      <button type="button" onclick="checkRijstrook(this)">Controleer</button>
+    </div>
+    <div id="rijstrook_correct" class="correct">Je hebt de rijstrook-vraag correct beantwoord!</div>
+    <div id="rijstrook_fout" class="fout"><i>rijstrook:</i> door doorgetrokken of onderbroken strepen gemarkeerd gedeelte van de rijbaan van zodanige breedte dat bestuurders van motorvoertuigen op meer dan twee wielen daarvan gebruik kunnen maken;</div>
+    <div id="snorfiets">
+      <h1>snorfiets:</h1>
+      1. <input type="text" id="snorfiets_a1"></input> die blijkens de gegevens in het kentekenregister is geconstrueerd voor een <input type="text" id="snorfiets_a2"></input> die niet meer bedraagt dan <input type="text" id="snorfiets_a3"></input> km per uur, met uitzondering van de <input type="text" id="snorfiets_a4"></input>, of 2. bromfiets als bedoeld in artikel 1, eerste lid, onderdeel e, subonderdeel d, van de wet;
+      <button type="button" onclick="checkSnorfiets(this)">Controleer</button>
+    </div>
+    <div id="snorfiets_correct" class="correct">Je hebt de snorfiets-vraag correct beantwoord!</div>
+    <div id="snorfiets_fout" class="fout"><i>snorfiets:</i> 1. bromfiets die blijkens de gegevens in het kentekenregister is geconstrueerd voor een maximumsnelheid die niet meer bedraagt dan 25 km per uur, met uitzondering van de speed-pedelec, of 2. bromfiets als bedoeld in artikel 1, eerste lid, onderdeel e, subonderdeel d, van de wet;</div>
+    <div id="speed_pedelec">
+      <h1>speed pedelec:</h1>
+      elektrische <input type="text" id="speed_pedelec_a1"></input> met <input type="text" id="speed_pedelec_a2"></input> waarvan de aandrijfkracht <input type="text" id="speed_pedelec_a3"></input> als het voertuig de snelheid van <input type="text" id="speed_pedelec_a4"></input> km per uur overschrijdt;
+      <button type="button" onclick="checkSpeed_pedelec(this)">Controleer</button>
+    </div>
+    <div id="speed_pedelec_correct" class="correct">Je hebt de speed_pedelec-vraag correct beantwoord!</div>
+    <div id="speed_pedelec_fout" class="fout"><i>speed_pedelec:</i> elektrische bromfiets met trapondersteuning waarvan de aandrijfkracht aanhoudt als het voertuig de snelheid van 25 km per uur overschrijdt;</div>
+    <div id="spitsstrook">
+      <h1>spitsstrook:</h1>
+      de <input type="text" id="spitsstrook_a1"></input> die als <input type="text" id="spitsstrook_a2"></input> is aangewezen blijkens bord C23-01 van bijlage 1;
+      <button type="button" onclick="checkSpitsstrook(this)">Controleer</button>
+    </div>
+    <div id="spitsstrook_correct" class="correct">Je hebt de spitsstrook-vraag correct beantwoord!</div>
+    <div id="spitsstrook_fout" class="fout"><i>spitsstrook:</i> de vluchtstrook die als rijstrook is aangewezen blijkens bord C23-01 van bijlage 1;</div>
+    <div id="T100_bus">
+      <h1>T100 bus:</h1>
+      <input type="text" id="T100_bus_a1"></input>, ten aanzien waarvan uit een aantekening op het kentekenbewijs of uit het kentekenregister blijkt dat hij zodanig is ingericht dat hij in aanmerking komt voor een <input type="text" id="T100_bus_a2"></input> van <input type="text" id="T100_bus_a3"></input> kilometer per uur. Met een T100-bus als bedoeld in dit besluit wordt gelijkgesteld een autobus die is geregistreerd in een andere lidstaat van de Europese Unie dan wel een staat, niet zijnde een lidstaat van de Europese Unie, die partij is bij een daartoe strekkend of mede daartoe strekkend Verdrag dat Nederland bindt, en ten aanzien waarvan uit het kentekenbewijs of uit een verklaring afgegeven door een onafhankelijke keuringsinstelling, afgegeven op basis van onderzoekingen die een beschermingsniveau bieden dat ten minste gelijkwaardig is aan het niveau dat met de nationale onderzoekingen wordt nagestreefd, blijkt dat de autobus geschikt is voor een maximumsnelheid van 100 kilometer per uur;
+      <button type="button" onclick="checkT100_bus(this)">Controleer</button>
+    </div>
+    <div id="T100_bus_correct" class="correct">Je hebt de T100_bus-vraag correct beantwoord!</div>
+    <div id="T100_bus_fout" class="fout"><i>T100_bus:</i> autobus, ten aanzien waarvan uit een aantekening op het kentekenbewijs of uit het kentekenregister blijkt dat hij zodanig is ingericht dat hij in aanmerking komt voor een maximumsnelheid van 100 kilometer per uur. Met een T100-bus als bedoeld in dit besluit wordt gelijkgesteld een autobus die is geregistreerd in een andere lidstaat van de Europese Unie dan wel een staat, niet zijnde een lidstaat van de Europese Unie, die partij is bij een daartoe strekkend of mede daartoe strekkend Verdrag dat Nederland bindt, en ten aanzien waarvan uit het kentekenbewijs of uit een verklaring afgegeven door een onafhankelijke keuringsinstelling, afgegeven op basis van onderzoekingen die een beschermingsniveau bieden dat ten minste gelijkwaardig is aan het niveau dat met de nationale onderzoekingen wordt nagestreefd, blijkt dat de autobus geschikt is voor een maximumsnelheid van 100 kilometer per uur;</div>
+    <div id="uitrijstrook">
+      <h1>uitrijstrook:</h1>
+      door een <input type="text" id="uitrijstrook_a1"></input> van de <input type="text" id="uitrijstrook_a2"></input> rijbaan afgescheiden weggedeelte dat is bestemd voor <input type="text" id="uitrijstrook_a3"></input> die de doorgaande rijbaan verlaten;
+      <button type="button" onclick="checkUitrijstrook(this)">Controleer</button>
+    </div>
+    <div id="uitrijstrook_correct" class="correct">Je hebt de uitrijstrook-vraag correct beantwoord!</div>
+    <div id="uitrijstrook_fout" class="fout"><i>uitrijstrook:</i> door een blokmarkering van de doorgaande rijbaan afgescheiden weggedeelte dat is bestemd voor bestuurders die de doorgaande rijbaan verlaten;</div>
+    <div id="uitvaartstoet_van_motorvoertuigen">
+      <h1>uitvaartstoet van motorvoertuigen:</h1>
+      een stoet, bestaande uit <input type="text" id="uitvaartstoet_van_motorvoertuigen_a1"></input>, die een lijk als bedoeld in artikel 2, eerste lid, onderdeel a, van de Wet op de lijkbezorging of de as van een gecremeerd lijk begeleiden en die de in artikel 30c bedoelde <input type="text" id="uitvaartstoet_van_motorvoertuigen_a2"></input> voeren;
+      <button type="button" onclick="checkUitvaartstoet_van_motorvoertuigen(this)">Controleer</button>
+    </div>
+    <div id="uitvaartstoet_van_motorvoertuigen_correct" class="correct">Je hebt de uitvaartstoet_van_motorvoertuigen-vraag correct beantwoord!</div>
+    <div id="uitvaartstoet_van_motorvoertuigen_fout" class="fout"><i>uitvaartstoet_van_motorvoertuigen:</i> een stoet, bestaande uit motorvoertuigen, die een lijk als bedoeld in artikel 2, eerste lid, onderdeel a, van de Wet op de lijkbezorging of de as van een gecremeerd lijk begeleiden en die de in artikel 30c bedoelde herkenningstekens voeren;</div>
+    <div id="veiligheidscel">
+      <h1>veiligheidscel:</h1>
+      onderdeel van de constructie van een <input type="text" id="veiligheidscel_a1"></input>, een <input type="text" id="veiligheidscel_a2"></input> of een <input type="text" id="veiligheidscel_a3"></input> motorvoertuig dat de bestuurder of passagiers beschermt tegen <input type="text" id="veiligheidscel_a4"></input>;
+      <button type="button" onclick="checkVeiligheidscel(this)">Controleer</button>
+    </div>
+    <div id="veiligheidscel_correct" class="correct">Je hebt de veiligheidscel-vraag correct beantwoord!</div>
+    <div id="veiligheidscel_fout" class="fout"><i>veiligheidscel:</i> onderdeel van de constructie van een bromfiets, een motorfiets of een driewielig motorvoertuig dat de bestuurder of passagiers beschermt tegen hoofdletsel;</div>
+    <div id="verdrijvingsvlak">
+      <h1>verdrijvingsvlak:</h1>
+      gedeelte van de <input type="text" id="verdrijvingsvlak_a1"></input> waarop schuine <input type="text" id="verdrijvingsvlak_a2"></input> zijn aangebracht;
+      <button type="button" onclick="checkVerdrijvingsvlak(this)">Controleer</button>
+    </div>
+    <div id="verdrijvingsvlak_correct" class="correct">Je hebt de verdrijvingsvlak-vraag correct beantwoord!</div>
+    <div id="verdrijvingsvlak_fout" class="fout"><i>verdrijvingsvlak:</i> gedeelte van de rijbaan waarop schuine strepen zijn aangebracht;</div>
+    <div id="verkeer">
+      <h1>verkeer:</h1>
+      alle <input type="text" id="verkeer_a1"></input>;
+      <button type="button" onclick="checkVerkeer(this)">Controleer</button>
+    </div>
+    <div id="verkeer_correct" class="correct">Je hebt de verkeer-vraag correct beantwoord!</div>
+    <div id="verkeer_fout" class="fout"><i>verkeer:</i> alle weggebruikers;</div>
+    <div id="vluchthaven_of_vluchtstrook">
+      <h1>vluchthaven of vluchtstrook:</h1>
+      door een <input type="text" id="vluchthaven_of_vluchtstrook_a1"></input> streep van de rijbaan van de <input type="text" id="vluchthaven_of_vluchtstrook_a2"></input> of <input type="text" id="vluchthaven_of_vluchtstrook_a3"></input> afgescheiden weggedeelte, dat bestemd is voor gebruik in <input type="text" id="vluchthaven_of_vluchtstrook_a4"></input>, behoudens voor de duur van openstelling als <input type="text" id="vluchthaven_of_vluchtstrook_a5"></input>;
+      <button type="button" onclick="checkVluchthaven_of_vluchtstrook(this)">Controleer</button>
+    </div>
+    <div id="vluchthaven_of_vluchtstrook_correct" class="correct">Je hebt de vluchthaven_of_vluchtstrook-vraag correct beantwoord!</div>
+    <div id="vluchthaven_of_vluchtstrook_fout" class="fout"><i>vluchthaven_of_vluchtstrook:</i> door een doorgetrokken streep van de rijbaan van de autosnelweg of autoweg afgescheiden weggedeelte, dat bestemd is voor gebruik in noodgevallen, behoudens voor de duur van openstelling als spitsstrook;</div>
+    <div id="voertuigen">
+      <h1>voertuigen:</h1>
+      <input type="text" id="voertuigen_a1"></input>, <input type="text" id="voertuigen_a2"></input>, <input type="text" id="voertuigen_a3"></input>, <input type="text" id="voertuigen_a4"></input>, <input type="text" id="voertuigen_a5"></input> en <input type="text" id="voertuigen_a6"></input>;
+      <button type="button" onclick="checkVoertuigen(this)">Controleer</button>
+    </div>
+    <div id="voertuigen_correct" class="correct">Je hebt de voertuigen-vraag correct beantwoord!</div>
+    <div id="voertuigen_fout" class="fout"><i>voertuigen:</i> fietsen, bromfietsen, gehandicaptenvoertuigen, motorvoertuigen, trams en wagens;</div>
+    <div id="voorrangsvoertuig">
+      <h1>voorrangsvoertuig:</h1>
+      <input type="text" id="voorrangsvoertuig_a1"></input> dat de <input type="text" id="voorrangsvoertuig_a2"></input> en <input type="text" id="voorrangsvoertuig_a3"></input> voert als bedoeld in artikel 29;
+      <button type="button" onclick="checkVoorrangsvoertuig(this)">Controleer</button>
+    </div>
+    <div id="voorrangsvoertuig_correct" class="correct">Je hebt de voorrangsvoertuig-vraag correct beantwoord!</div>
+    <div id="voorrangsvoertuig_fout" class="fout"><i>voorrangsvoertuig:</i> motorvoertuig dat de optische en geluidssignalen voert als bedoeld in artikel 29;</div>
+    <div id="voorrang_verlenen">
+      <h1>voorrang verlenen:</h1>
+      het de betrokken <input type="text" id="voorrang_verlenen_a1"></input> in staat stellen <input type="text" id="voorrang_verlenen_a2"></input> hun weg te vervolgen;
+      <button type="button" onclick="checkVoorrang_verlenen(this)">Controleer</button>
+    </div>
+    <div id="voorrang_verlenen_correct" class="correct">Je hebt de voorrang_verlenen-vraag correct beantwoord!</div>
+    <div id="voorrang_verlenen_fout" class="fout"><i>voorrang_verlenen:</i> het de betrokken bestuurders in staat stellen ongehinderd hun weg te vervolgen;</div>
+    <div id="vrachtauto">
+      <h1>vrachtauto:</h1>
+      <input type="text" id="vrachtauto_a1"></input>, niet ingericht voor het vervoer van <input type="text" id="vrachtauto_a2"></input>, waarvan de toegestane maximum <input type="text" id="vrachtauto_a3"></input> meer bedraagt dan <input type="text" id="vrachtauto_a4"></input> kg;
+      <button type="button" onclick="checkVrachtauto(this)">Controleer</button>
+    </div>
+    <div id="vrachtauto_correct" class="correct">Je hebt de vrachtauto-vraag correct beantwoord!</div>
+    <div id="vrachtauto_fout" class="fout"><i>vrachtauto:</i> motorvoertuig, niet ingericht voor het vervoer van personen, waarvan de toegestane maximum massa meer bedraagt dan 3500 kg;</div>
+    <div id="weggebruikers">
+      <h1>weggebruikers:</h1>
+      <input type="text" id="weggebruikers_a1"></input>, <input type="text" id="weggebruikers_a2"></input>, <input type="text" id="weggebruikers_a3"></input>, bestuurders van een <input type="text" id="weggebruikers_a4"></input>, van een <input type="text" id="weggebruikers_a5"></input> of van een <input type="text" id="weggebruikers_a6"></input>, <input type="text" id="weggebruikers_a7"></input>, geleiders van rij- of <input type="text" id="weggebruikers_a8"></input> of <input type="text" id="weggebruikers_a9"></input> en bestuurders van een <input type="text" id="weggebruikers_a10"></input> of <input type="text" id="weggebruikers_a11"></input> wagen;
+      <button type="button" onclick="checkWeggebruikers(this)">Controleer</button>
+    </div>
+    <div id="weggebruikers_correct" class="correct">Je hebt de weggebruikers-vraag correct beantwoord!</div>
+    <div id="weggebruikers_fout" class="fout"><i>weggebruikers:</i> voetgangers, fietsers, bromfietsers, bestuurders van een gehandicaptenvoertuig, van een motorvoertuig of van een tram, ruiters, geleiders van rij- of trekdieren of vee en bestuurders van een bespannen of onbespannen wagen;</div>
+    <div id="inhalen">
+      <h1>inhalen:</h1>
+      er is sprake van inhalen als twee zich in <input type="text" id="inhalen_a1"></input> richting voortbewegende <input type="text" id="inhalen_a2"></input> elkaar naderen en vervolgens voorbijrijden, omdat het achterste voertuig sneller rijdt dan het voorste. Ook het voorbijrijden van een <input type="text" id="inhalen_a3"></input> dat <input type="text" id="inhalen_a4"></input> aan het verkeer deelneemt maar dat door de bestuurder tot <input type="text" id="inhalen_a5"></input> is gebracht is inhalen. Een stilstaand voertuig waarmee <input type="text" id="inhalen_a6"></input> aan het verkeer wordt deelgenomen, bijvoorbeeld een <input type="text" id="inhalen_a7"></input> auto, wordt niet ingehaald, maar voorbij gereden of gepasseerd;
+      <button type="button" onclick="checkInhalen(this)">Controleer</button>
+    </div>
+    <div id="inhalen_correct" class="correct">Je hebt de inhalen-vraag correct beantwoord!</div>
+    <div id="inhalen_fout" class="fout"><i>inhalen:</i> er is sprake van inhalen als twee zich in dezelfde richting voortbewegende voertuigen elkaar naderen en vervolgens voorbijrijden, omdat het achterste voertuig sneller rijdt dan het voorste. Ook het voorbijrijden van een voertuig dat wel aan het verkeer deelneemt maar dat door de bestuurder tot stilstand is gebracht is inhalen. Een stilstaand voertuig waarmee niet aan het verkeer wordt deelgenomen, bijvoorbeeld een geparkeerde auto, wordt niet ingehaald, maar voorbij gereden of gepasseerd;</div>
 
-var vakantie = new Date(2018, 1, 17, 0, 0, 0, 0, 0);
+  </body>
 
-function script() {
-	currentDate = new Date();
-	document.getElementById("start").innerHTML = start;
-	const milliseconds = currentDate-start;
-	document.getElementById("days").innerHTML = milliseconds.millisToDays();
-	document.getElementById("dagViering").innerHTML = dagViering(milliseconds);
-	document.getElementById("months").innerHTML = calculateMonths(start, currentDate);
-	document.getElementById("hours").innerHTML = Math.floor(milliseconds / 1000 / 60 / 60);
-	document.getElementById("seconds").innerHTML = Math.floor(milliseconds / 1000);
-	document.getElementById("secondeViering").innerHTML = secondeViering(milliseconds);
-	document.getElementById("maandViering").innerHTML = maandViering(currentDate);
-	document.getElementById("dagenTotVakantie").innerHTML = dagenTotVakantie(currentDate);
-}
+  <script>
 
-Number.prototype.millisToDays = function () {
-	return Math.floor(this / 1000 / 60 / 60 / 24);
-}
+    function checkAanhangwagens(elem) {
+      var goedeAntwoorden =['voertuigen', 'voertuig', 'opleggers'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkAmbulance(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'ingericht', 'bestemd', 'ambulancezorg'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkAutobus(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'ingericht', 'meer', 'acht', 'niet'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkAutosnelweg(elem) {
+      var goedeAntwoorden =['parkeerplaatsen', 'tankstations', 'bushalteplaatsen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkAutoweg(elem) {
+      var goedeAntwoorden =['parkeerplaatsen', 'tankstations', 'bushalteplaatsen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBestelauto(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'goederen', 'massa', '3500'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBestemmingsverkeer(elem) {
+      var goedeAntwoorden =['bestuurders', 'reisdoel', 'geslotenverklaring', 'bestuurders', 'lijnbussen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBestuurders(elem) {
+      var goedeAntwoorden =['weggebruikers', 'voetgangers'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBestuurder_van_een_motorvoertuig(elem) {
+      var goedeAntwoorden =['dubbele', 'bediening', 'rijonderricht'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBrombakfiets(elem) {
+      var goedeAntwoorden =['bromfiets', 'drie', 'twee', 'bestuurder', 'goederen', 'achter'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBrommobiel(elem) {
+      var goedeAntwoorden =['bromfiets', 'meer', 'twee', 'carrosserie'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBusbaan(elem) {
+      var goedeAntwoorden =['rijbaan', 'BUS', 'LIJNBUS'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkBusstrook(elem) {
+      var goedeAntwoorden =['doorgetrokken', 'onderbroken', 'rijbaan', 'BUS', 'LIJNBUS'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkDag(elem) {
+      var goedeAntwoorden =['zonsopgang', 'zonsondergang'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkDiensten_voor_spoedeisende_medische_hulpverlening(elem) {
+      var goedeAntwoorden =['spoedeisende'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkDierenambulance(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'ingericht', 'bestemd'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkDoorgaande_rijbaan(elem) {
+      var goedeAntwoorden =['uitrijstroken'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkFietsstrook(elem) {
+      var goedeAntwoorden =['doorgetrokken', 'onderbroken', 'rijbaan', 'fiets'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkGehandicaptenvoertuig(elem) {
+      var goedeAntwoorden =['voertuig', 'ingericht', 'gehandicapte', '1,10', 'niet', 'motor', 'maximumsnelheid', '45', 'bromfiets'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkGeslotenverklaring(elem) {
+      var goedeAntwoorden =['rijden', 'gaan', 'gebruiken'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkInvoegstrook(elem) {
+      var goedeAntwoorden =['blokmarkering', 'doorgaande', 'bestuurders', 'oprijden'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkKruispunt(elem) {
+      var goedeAntwoorden =['kruising', 'splitsing'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkLijnbus(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'openbaar'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkMilitaire_kolonne(elem) {
+      var goedeAntwoorden =['achter', 'militaire', 'rampenbestrijdingsorganisatie', 'motorvoertuigen', 'commandant', 'herkenningstekens'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkMotorfiets(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'twee', 'aanhangwagen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkMotorvoertuigen(elem) {
+      var goedeAntwoorden =['gemotoriseerde', 'bromfietsen', 'trapondersteuning', 'gehandicaptenvoertuigen', 'rails'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkNacht(elem) {
+      var goedeAntwoorden =['zonsondergang', 'zonsopgang'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkOverweg(elem) {
+      var goedeAntwoorden =['weg', 'spoorweg'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkParkeerhaven_of_parkeerstrook(elem) {
+      var goedeAntwoorden =['rijbaan', 'stilstaande', 'geparkeerde'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkParkeren(elem) {
+      var goedeAntwoorden =['stilstaan', 'voertuig', 'nodig', 'onmiddellijk', 'uitstappen', 'passagiers', 'laden', 'lossen', 'goederen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkPuntstuk(elem) {
+      var goedeAntwoorden =['splitsingen', 'samenvoegingen', 'wegen', 'rijstroken', 'rijbanen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkRijbaan(elem) {
+      var goedeAntwoorden =['rijdende', 'fietspaden', 'fiets/bromfietspaden'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkRijstrook(elem) {
+      var goedeAntwoorden =['doorgetrokken', 'onderbroken', 'rijbaan', 'breedte', 'meer', 'twee'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkSnorfiets(elem) {
+      var goedeAntwoorden =['bromfiets', 'maximumsnelheid', '25', 'speed-pedelec'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkSpeed_pedelec(elem) {
+      var goedeAntwoorden =['bromfiets', 'trapondersteuning', 'aanhoudt', '25'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkSpitsstrook(elem) {
+      var goedeAntwoorden =['vluchtstrook', 'rijstrook'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkT100_bus(elem) {
+      var goedeAntwoorden =['autobus', 'maximumsnelheid', '100'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkUitrijstrook(elem) {
+      var goedeAntwoorden =['blokmarkering', 'doorgaande', 'bestuurders'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkUitvaartstoet_van_motorvoertuigen(elem) {
+      var goedeAntwoorden =['motorvoertuigen', 'herkenningstekens'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVeiligheidscel(elem) {
+      var goedeAntwoorden =['bromfiets', 'motorfiets', 'driewielig', 'hoofdletsel'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVerdrijvingsvlak(elem) {
+      var goedeAntwoorden =['rijbaan', 'strepen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVerkeer(elem) {
+      var goedeAntwoorden =['weggebruikers'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVluchthaven_of_vluchtstrook(elem) {
+      var goedeAntwoorden =['doorgetrokken', 'autosnelweg', 'autoweg', 'noodgevallen', 'spitsstrook'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVoertuigen(elem) {
+      var goedeAntwoorden =['fietsen', 'bromfietsen', 'gehandicaptenvoertuigen', 'motorvoertuigen', 'trams', 'wagens'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVoorrangsvoertuig(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'optische', 'geluidssignalen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVoorrang_verlenen(elem) {
+      var goedeAntwoorden =['bestuurders', 'ongehinderd'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkVrachtauto(elem) {
+      var goedeAntwoorden =['motorvoertuig', 'personen', 'massa', '3500'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkWeggebruikers(elem) {
+      var goedeAntwoorden =['voetgangers', 'fietsers', 'bromfietsers', 'gehandicaptenvoertuig', 'motorvoertuig', 'tram', 'ruiters', 'trekdieren', 'vee', 'bespannen', 'onbespannen'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function checkInhalen(elem) {
+      var goedeAntwoorden =['dezelfde', 'voertuigen', 'voertuig', 'wel', 'stilstand', 'niet', 'geparkeerde'];
+      verwerkAntwoorden(elem.parentNode.id, goedeAntwoorden);
+    };
+    function antwoorden(vraag) {
+      var i = 1;
+      var antwoorden = [];
+      while (document.getElementById(vraag + "_a" + i) != null) {
+        antwoorden.push(document.getElementById(vraag + "_a" + i).value);
+        i += 1;
+      }
+      return antwoorden;
+    };
 
-Number.prototype.millisToSeconds = function() {
-	return Math.floor(this / 1000);
-};
+    function controleer(a1, a2) {
+      console.log(a1);
+      console.log(a2);
+      var i = 0;
+      for (i = 0; i < a2.length; i++) {
+        if (a1[i].toLowerCase().trim() != a2[i].toLowerCase()) {
+          return false;
+        }
+      }
+      return true;
+    };
 
-function secondeViering(elapsed) {
-	if (elapsed.millisToSeconds() % 1000000 < 30 * minuutInSecondes) {
-		return "oooowwww yes";
-	} else {
-		return "";
-	}
-}
-function dagViering(elapsed) { 
-	if (elapsed.millisToDays() === 42 || elapsed.millisToDays() % 100 === 0) {
-		return "wooohoooooo!!!";
-	} else {
-		return "";
-	}
-}
+    function verwerkAntwoorden(vraagId, goedeAntwoorden) {
+      var nrVragenBeantwoord = parseInt(document.getElementById("nr_beantwoord").innerHTML, 10);
+      document.getElementById("nr_beantwoord").innerHTML = nrVragenBeantwoord + 1;
+      if (controleer(antwoorden(vraagId), goedeAntwoorden)) {
+	document.getElementById(vraagId).style.display = "none";
+	document.getElementById(vraagId + "_correct").style.display = "block";
+        var nrVragenGoedBeantwoord = parseInt(document.getElementById("nr_goed_beantwoord").innerHTML, 10);
+        document.getElementById("nr_goed_beantwoord").innerHTML = nrVragenGoedBeantwoord + 1;
+      } else {
+        var nrVragenFoutBeantwoord = parseInt(document.getElementById("nr_fout_beantwoord").innerHTML, 10);
+        document.getElementById("nr_fout_beantwoord").innerHTML = nrVragenFoutBeantwoord + 1;
+        document.getElementById(vraagId).style.display = "none";
+	document.getElementById(vraagId + "_fout").style.display = "block";
+      }
+    };
 
-function maandViering(current){
-	if (current.getDate() === start.getDate()) {
-		return "Jippieee";
-	} else {
-		return "";
-	}
-}
-
-function calculateMonths(from, to) {
-	var months = to.getMonth() - from.getMonth() 
-    + (12 * (to.getFullYear() - from.getFullYear()));
-
-	if(to.getDate() < from.getDate()){
-	    months--;
-	}
-	return months;
-}
-
-function dagenTotVakantie(currentDate) {
-	var dagenTeGaan = (vakantie - currentDate).millisToDays();
-	return dagenTeGaan + " dagen!!"
-}
-</script> 
-</head>
-<body onload="script(); setInterval(script, 1000);">
-<div style="position:absolute; top:50%; left:50%; width: 100vw; font-size: 4vw; text-align: center; -ms-transform: translateX(-50%) translateY(-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);">
-	<div id="start"></div>
-	<div> Maanden: <span id="months"></span> <span id="maandViering"></span></div>
-	<div> Dagen: <span id="days"></span> <span id="dagViering"></span></div>
-	<div> Uren: <span id="hours"></span></div>
-	<div> Secondes: <span id="seconds"></span> <span id="secondeViering"></span></div>
-
-	<div> &lt;3 </div>
-	<div> Vakantie over..... <span id="dagenTotVakantie" /></div>
-</div>
-</body>
+  </script>
 </html>
 
