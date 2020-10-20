@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  height: 24px;
+  height: auto; /*24px;*/
   padding: .75em 15px;
   line-height: 1em;
   font-size: 1em;
@@ -145,7 +145,7 @@
  Larger screen styling
  Horizontal menu
 */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .menu-toggle,
   .main-menu .menu-close {
     display: none;
