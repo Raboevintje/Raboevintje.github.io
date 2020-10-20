@@ -37,12 +37,8 @@
 */
 .main-menu {
   position: fixed;
-  /*display: none;*/
   left: -200px;
   top: 0;
-  /*height: 100%;*/
-
-  /*overflow-y: scroll;*/
   overflow-x: visible;
   transition: left 0.3s ease, box-shadow 0.3s ease;
   z-index: 999;
@@ -52,10 +48,6 @@
   list-style: none;
   margin: 0;
   padding: 2.5em 0 0;
-  /* Hide shadow w/ -8px while 'closed' 
-  -webkit-box-shadow: -8px 0 8px rgba(0,0,0,.5);
-     -moz-box-shadow: -8px 0 8px rgba(0,0,0,.5);
-          box-shadow: -8px 0 8px rgba(0,0,0,.5);*/
   min-height: 100%;
   width: 200px;
   background: #1a1a1a;
@@ -67,7 +59,7 @@
   line-height: 1em;
   font-size: 1em;
   color: #fff;
-  text-decoration: none; /* lijn onder menu componentjes */
+  text-decoration: none;
   border-bottom: 1px solid #383838;
 }
 
@@ -77,7 +69,7 @@
 
 .main-menu a:hover,
 .main-menu a:focus {
-  background: #333; /* achtergrond verandert bij hoveren over menu componentje */
+  background: #333;
   text-decoration: none;
 }
 
@@ -136,7 +128,7 @@
 @supports (position: fixed) {
   .main-menu,
   .main-menu:target + .backdrop,
-  .main-menu[aria-expanded="true"] + .backdrop{
+  .main-menu[aria-expanded="true"] + .backdrop {
     position: fixed;
   }
 }
@@ -217,53 +209,11 @@ p {
   display: block;
 }
 
-/* The navigation bar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  background-color: #333;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  border-bottom: 2px solid green;
-}
-
-/* Links inside the navbar */
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  color: black;
-  text-align: center;
-  padding: 10px 12px;
-  text-decoration: none;
-  font-size: 1.4em;
-}
-
-.whatsapp-logo {
-  width: 20px;
-  height: 20px;
-}
-
-/* Change background on mouse-over */
-.navbar a:hover {
-  color: white;
-}
 .home:hover { background: #213752; }
 .yellow:hover { background: #ffd942; }
 .green:hover { background: #68c230; }
 .blue:hover { background: #2f85ed; }
 .orange:hover { background: #ff9442; }
-
-.navbar-phone {  
-}
-
-.navbar-phone a:hover {
-  color: green;
-}
 
 .main {
   margin-top: 50px;
@@ -479,37 +429,6 @@ p {
     width: 30%;
   }
 }
-    
-input[type=text], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-}
 
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-/* Add a background color and some padding around the form */
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
 }
 
