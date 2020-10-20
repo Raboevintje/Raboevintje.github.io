@@ -1,0 +1,481 @@
+/* NAVIGATION HEADER */
+.contact-items {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 24px;
+  padding: .75em 15px;
+  line-height: 1em;
+  font-size: 1em;
+  color: #333;
+  z-index: 1000;
+}
+
+/* Button styling */
+.menu-toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  border-bottom: 2px solid green;
+  height: 24px;
+  width: 100%;
+  padding: .75em 15px;
+  line-height: 1em;
+  font-size: 1em;
+  color: #333;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  color: #c00;
+}
+
+/*
+ Default styles + Mobile first
+ Offscreen menu style
+*/
+.main-menu {
+  position: fixed;
+  /*display: none;*/
+  left: -200px;
+  top: 0;
+  /*height: 100%;*/
+
+  /*overflow-y: scroll;*/
+  overflow-x: visible;
+  transition: left 0.3s ease, box-shadow 0.3s ease;
+  z-index: 999;
+}
+
+.main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 2.5em 0 0;
+  /* Hide shadow w/ -8px while 'closed' 
+  -webkit-box-shadow: -8px 0 8px rgba(0,0,0,.5);
+     -moz-box-shadow: -8px 0 8px rgba(0,0,0,.5);
+          box-shadow: -8px 0 8px rgba(0,0,0,.5);*/
+  min-height: 100%;
+  width: 200px;
+  background: #1a1a1a;
+}
+
+.main-menu a {
+  display: block;
+  padding: .75em 15px;
+  line-height: 1em;
+  font-size: 1em;
+  color: #fff;
+  text-decoration: none; /* lijn onder menu componentjes */
+  border-bottom: 1px solid #383838;
+}
+
+.main-menu li:first-child a {
+  border-top: 1px solid #383838;
+}
+
+.main-menu a:hover,
+.main-menu a:focus {
+  background: #333; /* achtergrond verandert bij hoveren over menu componentje */
+  text-decoration: none;
+}
+
+.main-menu .menu-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/*
+ On small devices, allow it to toggle...
+*/
+/*
+ :target for non-JavaScript
+ [aria-expanded] will be used if/when JavaScript is added to improve interaction, though it's completely optional.
+*/
+.main-menu:target,
+.main-menu[aria-expanded="true"] {
+  display: block;
+  left: 0;
+  outline: none;
+  -moz-box-shadow: 3px 0 12px rgba(0,0,0,.25);
+  -webkit-box-shadow: 3px 0 12px rgba(0,0,0,.25);
+  box-shadow: 3px 0 12px rgba(0,0,0,.25);
+}
+
+.main-menu:target .menu-close,
+.main-menu[aria-expanded="true"] .menu-close {
+  z-index: 1001;
+}
+
+.main-menu:target ul,
+.main-menu[aria-expanded="true"] ul {
+  position: relative;
+  z-index: 1000;
+}
+
+/* 
+ We could us `.main-menu:target:after`, but
+ it wouldn't be clickable.
+*/
+.main-menu:target + .backdrop,
+.main-menu[aria-expanded="true"] + .backdrop {
+  position: relative;
+  display: block;  
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  /*background: #000;
+  background: rgba(0,0,0,.85);*/ /* donkere overlay */
+  cursor: default;
+}
+
+@supports (position: fixed) {
+  .main-menu,
+  .main-menu:target + .backdrop,
+  .main-menu[aria-expanded="true"] + .backdrop{
+    position: fixed;
+  }
+}
+
+/*
+ Larger screen styling
+ Horizontal menu
+*/
+@media (min-width: 768px) {
+  .menu-toggle,
+  .main-menu .menu-close {
+    display: none;
+  }
+  
+  /* Undo positioning of off-canvas menu */
+  .main-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .main-menu ul {
+    display: flex;
+    
+    /* Undo off-canvas styling */
+    padding: 0;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+    height: auto;
+    width: auto;
+    background: none;
+  }
+  
+  .main-menu a {
+    color: #06c;
+    border: 0 !important; /* Remove borders from off-canvas styling */
+  }
+  
+  .main-menu a:hover,
+  .main-menu a:focus {
+    background: none; /* Remove background from off-canvas styling */
+    color: #c00;
+  }
+}
+
+/****************************************************************************/
+body {
+  font-family: 'Hind Vadodara', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  margin: 30px 20px 10px;
+  font-weight: 500;
+}
+
+h2 {
+  margin: 30px 20px 0px;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 20px;
+}
+ 
+.hide-on-small-screens {
+  display: block;
+}
+
+/* The navigation bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: #333;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  border-bottom: 2px solid green;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  color: black;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-size: 1.4em;
+}
+
+.whatsapp-logo {
+  width: 20px;
+  height: 20px;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  color: white;
+}
+.home:hover { background: #213752; }
+.yellow:hover { background: #ffd942; }
+.green:hover { background: #68c230; }
+.blue:hover { background: #2f85ed; }
+.orange:hover { background: #ff9442; }
+
+.navbar-phone {  
+}
+
+.navbar-phone a:hover {
+  color: green;
+}
+
+.main {
+  margin-top: 50px;
+}
+
+.section-wrapper {
+  padding-top: 40px;
+  margin-top: -34px;
+}
+
+.section {
+  margin: 0 0 0 15px;
+  padding: 0px;
+}
+
+.final-section {
+  height: 50vh;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: white;
+}
+
+.hero-img {
+  flex-grow: 2;
+  max-height: 72vh;
+  object-fit: cover;
+}
+
+.selling-points {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #213752;
+  font-size: 1.2em;
+  width: 25%;
+}
+
+.selling-points .circle {
+  margin-top: 20px;
+  display: flex;
+  color: white;
+}
+
+.selling-points .circle .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+  border: 1px solid white;
+  border-radius: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  text-align: center;
+}
+
+.price {
+  font-size: 3em;
+  font-weight: 600;
+  width: 100%;
+  background-color: green;
+  text-align: center;
+}
+
+.assets {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  color: green;
+}
+
+.assets .asset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 10px 10px;
+  padding: 20px;
+  max-width: 80vw;
+  border: 1px solid green;
+  border-radius: 10px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  text-align: center;
+}
+
+.about-me {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-me p {
+  max-width: 300px;
+  text-align: justify;
+}
+
+.about-me .multiple-p p {
+  margin-top: 15px;
+}
+
+.about-me .multiple-p p:first-child {
+  margin-top: 0;
+}
+
+.about-me h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.portrait {
+  border-radius: 35%;
+  margin-bottom: 15px;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  border: 5px solid #ffda47;
+}
+
+.table {
+  display: table;
+  margin: 20px;
+}
+
+.row {
+  display: table-row;
+}
+
+.col {
+  display: table-cell;
+  padding: 5px 10px;
+}
+
+.total-cost-comparison {
+  font-size: 1.2em;
+  text-align: right;
+}
+
+.total-cost-comparison td {
+  padding: 0 10px;
+  border: 2px solid white;
+}
+
+.total-cost-comparison .col-renate  {
+  background-color: white;
+  color: green;
+  border: none;
+}
+
+.total-cost-comparison .col-renate-total  {
+  border-top: 2px solid black;
+  color: green;
+  font-size: 1.2em;
+}
+
+/*...*/
+.column {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.align-top {
+  align-items: flex-start;
+}
+
+.column-30 {
+  width: 30%;
+}
+
+.column-70 {
+  width: 70%;
+}
+
+/* small screen */
+@media screen and (max-width: 500px) {
+  .hide-on-small-screen { display: none; }
+}
+
+@media screen and (min-width: 500px) {
+  .hide-on-large-screen { display: none; }
+}
+
+@media screen and (max-width: 880px) {
+  .selling-points {
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .selling-points .circle {
+    margin-top: 0;
+  }
+
+  .selling-points .circle .inner {
+    height: 20px;
+    width: 100%;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+
+  .price {
+    font-size: 2.5em;
+    font-weight: 500;
+    width: 30%;
+  }
+}
+    
+
