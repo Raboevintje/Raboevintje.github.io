@@ -45,9 +45,20 @@
   align-items: center;
   top: 0;
   right: 5px;
+  height: 50px;
   z-index: 1000;
 }
+.contact-items a {
+  text-decoration: none;
+  margin: 4px;
+}
 
+.whatsapp {
+  color: green;
+}
+.phone {
+  color: black;
+}
 .whatsapp-logo {
   margin-right: 5px;
 }
