@@ -19,7 +19,7 @@
 .hamburgerbar {
   width: 33px;
   height: 4px;
-  background-color: #213752;
+  background-color: #212121;
   margin: 5px 0;
   border-radius: 2px;
 }
@@ -58,12 +58,12 @@
   text-decoration: none;
 }
 
-.telefoon {
+.phone {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 52px;
-  width: 60px;
+  width: 130px;
   font-size: 1.2em;
   color: white;
   background: green;
@@ -112,7 +112,7 @@
   padding: 2.5em 0 0;
   min-height: 100%;
   width: 120px;
-  background: #213752; /* background of offscreen/mobile menu */
+  background: #212121;
 }
 
 .main-menu a {
@@ -249,8 +249,15 @@ div {
 }
 
 h1 {
-  margin: 30px 20px 10px;
+  margin: 30px 20px 10px -23px;
+  padding: 4px 20px;
   font-weight: 500;
+  color: white;
+  background: #5c5c5c;
+  border: 3px outset #5c5c5c;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
 }
 
 h2 {
@@ -274,7 +281,7 @@ p {
 
 .main {
   margin-top: 50px;
-  max-width: 1400px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -315,7 +322,7 @@ p {
 .selling-points {
   display: flex;
   align-items: center;
-  background-color: black; /*#213752; donkerblauw*/
+  background-color: #212121;
   font-size: 1.2em;
   width: 25%;
 }
@@ -334,6 +341,7 @@ p {
   flex-shrink: 0;
   flex-grow: 0;
   text-align: center;
+  background: green;
   color: white;
   text-decoration: none;
 }
@@ -359,19 +367,43 @@ p {
   text-align: center;
 }
 
-.about-me {
+.prices {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin: 20px;
+}
+.item-description-price {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin: 10px 10px;
+  border: 1px solid green;
+  width: 420px;
+}
+.priced-item {
+  font-size: 1.2em;
+  min-width: 260px;
+}
+.item-price {
+  font-size: 1.3em;
+  margin-right: 0;
+  margin-left: auto;
+  align-self: flex-start;
+}
+.item-description {
+  font-size: 0.9em;
+}
+
+.about-me {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .about-me p {
-  max-width: 300px;
+  max-width: 500px;
+  margin-bottom: 20px;
   text-align: justify;
-}
-
-.about-me .multiple-p p {
-  margin-top: 15px;
 }
 
 .about-me .multiple-p p:first-child {
@@ -392,43 +424,6 @@ p {
   border: 5px solid #ffda47;
 }
 
-.table {
-  display: table;
-  margin: 20px;
-}
-
-.row {
-  display: table-row;
-}
-
-.col {
-  display: table-cell;
-  padding: 5px 10px;
-}
-
-.total-cost-comparison {
-  font-size: 1.2em;
-  text-align: right;
-}
-
-.total-cost-comparison td {
-  padding: 0 10px;
-  border: 2px solid white;
-}
-
-.total-cost-comparison .col-renate  {
-  background-color: white;
-  color: green;
-  border: none;
-}
-
-.total-cost-comparison .col-renate-total  {
-  border-top: 2px solid black;
-  color: green;
-  font-size: 1.2em;
-}
-
-
 /*...*/
 .column {
   display: flex;
@@ -438,14 +433,6 @@ p {
 
 .align-top {
   align-items: flex-start;
-}
-
-.column-30 {
-  width: 30%;
-}
-
-.column-70 {
-  width: 70%;
 }
 
 .nowrap {
@@ -488,7 +475,7 @@ p {
 }
 
 /* super large screens */
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1100px) {
   .main {
     margin-top: 80px;
     padding: 0 30px;
