@@ -83,7 +83,7 @@
   border-right-color: green;
   border-left: 0;
   margin-top: -8px;
-  margin-left: -7px;
+  margin-left: -6px;
 }
 
 .menu-toggle {
@@ -249,14 +249,14 @@ div {
 }
 
 h1 {
-  margin: 30px 20px 10px -23px;
+  
   padding: 4px 20px;
   font-weight: 500;
   color: white;
   background: #5c5c5c;
   border: 3px outset #5c5c5c;
   border-radius: 3px;
-  width: 100%;
+
   height: 50px;
 }
 
@@ -301,6 +301,8 @@ p {
 
 .final-section {
   height: 50vh;
+  padding-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 .hero {
@@ -374,21 +376,18 @@ p {
 }
 .item-description-price {
   display: flex;
-  align-items: center;
   padding: 10px 20px;
   margin: 10px 10px;
   border: 1px solid green;
-  width: 420px;
+  width: 250px;
 }
 .priced-item {
   font-size: 1.2em;
-  min-width: 260px;
 }
 .item-price {
   font-size: 1.3em;
   margin-right: 0;
   margin-left: auto;
-  align-self: flex-start;
 }
 .item-description {
   font-size: 0.9em;
