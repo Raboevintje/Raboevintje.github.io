@@ -9,13 +9,19 @@
   border-bottom: 2px solid green;
 }
 
+/* only for super large screens */
+.navbar-extension {
+  display: none;
+}
+
 .hamburger {
 }
 .hamburgerbar {
   width: 33px;
   height: 4px;
-  background-color: green;
+  background-color: #213752;
   margin: 5px 0;
+  border-radius: 2px;
 }
 .hamburgerbar:first-child {
   margin-top: 0;
@@ -44,23 +50,40 @@
   display: flex;
   align-items: center;
   top: 0;
-  right: 5px;
+  right: 0;
   height: 50px;
   z-index: 1000;
 }
 .contact-items a {
   text-decoration: none;
-  margin: 4px;
 }
 
-.whatsapp {
-  color: green;
+.telefoon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  width: 60px;
+  font-size: 1.2em;
+  color: white;
+  background: green;
+  border-left: 1px solid white;
 }
-.phone {
-  color: black;
+.pointy-thingy {
+  width: 110px;
 }
-.whatsapp-logo {
-  margin-right: 5px;
+.pointy-thingy:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: green;
+  border-left: 0;
+  margin-top: -8px;
+  margin-left: -7px;
 }
 
 .menu-toggle {
@@ -76,7 +99,7 @@
 .main-menu {
   background: white;
   position: fixed;
-  left: -200px;
+  left: -120px;
   top: 0;
   overflow-x: visible;
   transition: left 0.3s ease, box-shadow 0.3s ease;
@@ -88,7 +111,7 @@
   margin: 0;
   padding: 2.5em 0 0;
   min-height: 100%;
-  width: 200px;
+  width: 120px;
   background: #213752; /* background of offscreen/mobile menu */
 }
 
@@ -204,8 +227,7 @@
     border: 0 !important; /* Remove borders from off-canvas styling */
   }
   
-  .main-menu a:hover,
-  .main-menu a:focus {
+  .main-menu a:hover {
     color: white;
   }
 }
@@ -218,6 +240,7 @@ body {
   font-family: 'Hind Vadodara', sans-serif;
   padding: 0;
   margin: 0;
+  background: #d2d6ce;
 }
 
 div {
@@ -243,7 +266,7 @@ p {
   display: block;
 }
 
-.home:hover { background: #213752; }
+.home:hover { background: black; }
 .yellow:hover { background: #ffd942; }
 .green:hover { background: #68c230; }
 .blue:hover { background: #2f85ed; }
@@ -251,6 +274,9 @@ p {
 
 .main {
   margin-top: 50px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-wrapper {
@@ -258,6 +284,7 @@ p {
   margin-top: -34px;
   margin-left: auto;
   margin-right: auto;
+  background: white;
 }
 
 .section {
@@ -271,7 +298,6 @@ p {
 
 .hero {
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
   margin: 0;
   padding: 0;
@@ -289,38 +315,27 @@ p {
 .selling-points {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  background-color: #213752;
+  background-color: black; /*#213752; donkerblauw*/
   font-size: 1.2em;
   width: 25%;
 }
-
-.selling-points .circle {
-  margin-top: 20px;
-  display: flex;
+.trial-lesson {
+  margin: 20px auto 0 auto;
   color: white;
 }
-
-.selling-points .circle .inner {
+.trial-lesson .inner {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 20px;
   width: 150px;
   height: 150px;
   border: 1px solid white;
-  border-radius: 50%;
+  border-radius: 25%;
   flex-shrink: 0;
   flex-grow: 0;
   text-align: center;
-}
-
-.price {
-  font-size: 3em;
-  font-weight: 600;
-  width: 100%;
-  background-color: green;
-  text-align: center;
+  color: white;
+  text-decoration: none;
 }
 
 .assets {
@@ -335,7 +350,7 @@ p {
   justify-content: center;
   align-items: center;
   margin: 0 5px 10px 5px;
-  padding: 20px;
+  padding: 10px;
   max-width: 80vw;
   border: 1px solid green;
   border-radius: 10px;
@@ -433,38 +448,66 @@ p {
   width: 70%;
 }
 
-/* small screen */
-@media screen and (max-width: 500px) {
-  .hide-on-small-screen { display: none; }
+.nowrap {
+  white-space: nowrap;
 }
 
-@media screen and (min-width: 500px) {
+.costs-explained {
+  max-width: 400px;
+}
+
+@media screen and (min-width: 768px) {
   .hide-on-large-screen { display: none; }
 }
 
-@media screen and (max-width: 880px) {
+/* small screen */
+@media screen and (max-width: 768px) {
+  .hide-on-small-screen { display: none; }
+}
+
+/* small screen */
+@media screen and (max-width: 800px) {
   .selling-points {
-    flex-direction: row;
     width: 100%;
   }
   
-  .selling-points .circle {
-    margin-top: 0;
+  .selling-points .trial-lesson {
+    margin: 5px auto;
   }
 
-  .selling-points .circle .inner {
+  .selling-points .trial-lesson .inner {
+    white-space: nowrap;
     height: 20px;
-    width: 100%;
     border-radius: 5px;
-    margin-left: 5px;
+    width: auto;
   }
 
-  .price {
-    font-size: 2.5em;
-    font-weight: 500;
-    width: 30%;
+  .hero {
+    flex-direction: column;
   }
 }
 
+/* super large screens */
+@media screen and (min-width: 1400px) {
+  .main {
+    margin-top: 80px;
+    padding: 0 30px;
+  }
+  .hero-img {
+    border-top-left-radius: 20px;
+  }
+  .selling-points {
+    border-top-right-radius: 20px;
+  }
+  .navbar-extension {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #264d00;
+    height: 220px;
+    width: 100%;
+    z-index: -1;
+  }
 }
 
