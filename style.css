@@ -1,4 +1,16 @@
 /* NAVIGATION HEADER */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 50px;
+  width: 100%;
+  border-bottom: 2px solid green;
+}
+
+.hamburger {
+}
 .hamburgerbar {
   width: 33px;
   height: 4px;
@@ -29,32 +41,21 @@
 
 .contact-items {
   position: fixed;
+  display: flex;
+  align-items: center;
   top: 0;
-  right: 0;
-  height: auto; /*24px;*/
-  padding: .75em 15px;
-  line-height: 1em;
-  font-size: 1em;
-  color: #333;
-  font-size: 1.2em;
-  text-decoration: none;
+  right: 5px;
   z-index: 1000;
+}
+
+.whatsapp-logo {
+  margin-right: 5px;
 }
 
 .menu-toggle {
   position: fixed;
-  top: 0;
-  left: 0;
-  background: white;
-  border-bottom: 2px solid green;
-  width: 100%;
-  padding: .75em 15px;
-  line-height: 24px;
-}
-
-.menu-toggle:hover,
-.menu-toggle:focus {
-  color: red;
+  top: 14px;
+  left: 14px;
 }
 
 /*
@@ -63,9 +64,6 @@
 */
 .main-menu {
   background: white;
-  border-bottom: 2px solid green;
-  height: 24px;
-
   position: fixed;
   left: -200px;
   top: 0;
@@ -86,11 +84,11 @@
 .main-menu a {
   display: block;
   padding: .75em 15px;
-  line-height: 24px;
   font-size: 1.2em;
   color: #fff;
   text-decoration: none;
   border-bottom: 1px solid white;
+  border-right: 1px solid white;
 }
 
 .main-menu li:first-child a {
@@ -176,19 +174,17 @@
     position: fixed;
     left: 0;
     top: 0;
-    background-color: white;
-    width: 100%;
-    height: auto;
     display: block;
   }
   
   .main-menu ul {
     display: flex;
-    
+    align-items: center;
     /* Undo off-canvas styling */
     padding: 0;
-    height: auto;
+    height: 50px;
     width: auto;
+    overflow-y: hidden;
     background: none;
   }
   
@@ -243,7 +239,7 @@ p {
 .orange:hover { background: #ff9442; }
 
 .main {
-  margin-top: 42px;
+  margin-top: 50px;
 }
 
 .section-wrapper {
