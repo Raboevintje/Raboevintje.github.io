@@ -595,6 +595,10 @@ input[type='checkbox'] {
   width: 250px;
   background: white;
 }
+.read-more {
+  font-size: 0.9em;
+  color: gray;
+}
 .priced-item {
   font-size: 1.2em;
   line-height: 1.2em;
@@ -607,6 +611,7 @@ input[type='checkbox'] {
 }
 .item-description {
   font-size: 0.9em;
+  margin-bottom: 20px;
 }
 
 .packages {
