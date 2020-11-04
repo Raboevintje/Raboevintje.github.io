@@ -9,6 +9,9 @@
   display: flex;
   align-items: center;
   z-index: 1;
+-webkit-box-shadow: 0px 2px 4px 0px rgba(204,204,204,1);
+-moz-box-shadow: 0px 2px 4px 0px rgba(204,204,204,1);
+box-shadow: 0px 2px 4px 0px rgba(204,204,204,1);
 }
 .logo {
   margin-top: 3px;
@@ -25,9 +28,12 @@
   font-size: 1.5em;
   font-family: 'Cabin Sketch', cursive;
   min-width: 220px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 50%;
   margin-top: 5px;
+}
+.navbar-text a {
+  text-decoration: none;
+  color: black;
 }
 
 .hamburger {
@@ -575,12 +581,11 @@ input[type='checkbox'] {
 }
 
 .prices {
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 625px;
+  margin: 0 auto;
 }
 .item-description-price {
   display: flex;
@@ -592,6 +597,8 @@ input[type='checkbox'] {
 }
 .priced-item {
   font-size: 1.2em;
+  line-height: 1.2em;
+  margin-bottom: 8px;
 }
 .item-price {
   font-size: 1.3em;
@@ -608,6 +615,7 @@ input[type='checkbox'] {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-width: 700px;
 }
 .package {
   text-align: center;
@@ -639,7 +647,9 @@ input[type='checkbox'] {
 .package-1 { border-color: #68c230; background: #68c230; }
 .package-2 { border-color: #2f85ed; background: #2f85ed; }
 .package-3 { border-color: #ff9442; background: #ff9442; }
-.package-4 { border-color: green; background: green; }
+.package-4 { border-color: #8d42f5; background: #8d42f5; }
+.package-5 { border-color: green; background: green; }
+.package-6 { border-color: #d46702; background: #d46702; }
 
 .about-me {
   display: flex;
@@ -701,7 +711,7 @@ input[type='checkbox'] {
 }
 
 /* small screen */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   .selling-points {
     width: 100%;
   }
@@ -715,6 +725,15 @@ input[type='checkbox'] {
     height: 20px;
     border-radius: 40px;
     width: auto;
+  }
+  
+  .navbar-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .prices {
+    justify-content: center;
   }
 }
 
@@ -739,6 +758,10 @@ input[type='checkbox'] {
   }
   .hero {
     border-radius: 25px 25px 0 0;
+  }
+  .navbar-text {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
