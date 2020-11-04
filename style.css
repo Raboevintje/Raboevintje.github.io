@@ -402,17 +402,15 @@ p {
   width: 100%;
   color: white;
   background: purple;
-  background: rgb(8,3,87);
-  background: radial-gradient(circle, rgba(8,3,87,1) 0%, rgba(138,5,52,1) 53%, rgba(53,175,123,1) 77%, rgba(28,138,161,1) 100%);
-/*
-  background-image: url("https://www.anwb.nl/binaries/content/gallery/anwb/collecties/autotests/occasion/volkswagen/up/T__2003__3910000c.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; */
-  height: 70vh;
 
-background: rgb(255,255,255);
-background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 53%, rgba(255,178,62,1) 59%, rgba(255,83,83,1) 64%, rgba(98,0,255,1) 91%);
-color: black;
+
+  background-image: url("images/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  background: white;
+  background: linear-gradient(0deg, rgba(105,105,105,1) 0%, rgba(105,105,105,1) 11%, rgba(133,133,133,1) 12%, rgba(133,133,133,1) 12%, rgba(112,112,112,1) 14%, rgba(107,107,107,1) 25%, rgba(189,115,54,1) 27%, rgba(198,151,39,1) 39%, rgba(155,168,61,1) 52%, rgba(255,195,219,1) 55%, rgba(121,222,244,1) 83%, rgba(33,223,255,1) 100%);
+  color: black;
 }
 .soon {
   max-width: 50%;
